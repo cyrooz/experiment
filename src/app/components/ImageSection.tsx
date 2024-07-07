@@ -28,7 +28,14 @@ const SectionContainer = styled.div`
   }
 `;
 
-const ImageSection = ({ src, alt, title, description }) => (
+interface ImageSectionProps {
+  src: string;
+  alt: string;
+  title: string;
+  description: string;
+}
+
+const ImageSection: React.FC<ImageSectionProps> = ({ src, alt, title, description }) => (
   <SectionContainer>
     <img src={src} alt={alt} />
     <h1>{title}</h1>

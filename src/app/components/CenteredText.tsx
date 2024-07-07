@@ -1,4 +1,5 @@
 'use client';
+'use client';
 
 import React from 'react';
 import styled from 'styled-components';
@@ -20,7 +21,15 @@ const TextContainer = styled.div`
   }
 `;
 
-const CenteredText = ({ timeMessage, weather, userTime, location, emoji }) => (
+interface CenteredTextProps {
+  timeMessage: string;
+  weather: string;
+  userTime: string;
+  location: string;
+  emoji: string;
+}
+
+const CenteredText: React.FC<CenteredTextProps> = ({ timeMessage, weather, userTime, location, emoji }) => (
   <TextContainer>
     <div>
       Currently, I am what is known as{' '}

@@ -44,7 +44,8 @@ const Emoji = styled.span`
   transform-origin: 70% 70%;
 `;
 
-const ProfileSection = ({ src, alt }) => (
+
+const ProfileSection = ({ src, alt }: { src: string, alt: string }) => (
   <>
     <StyledImg src={src} alt={alt} />
     <StyledH1>

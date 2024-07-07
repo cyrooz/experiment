@@ -22,8 +22,14 @@ interface WeatherData {
 
 export async function fetchWeatherAndTime(): Promise<WeatherData> {
   try {
-    const apiKey = '3211fdc16743d4ca9eba7e3411d6ebc7'; // Replace with your weather API key
-    const ipInfoResponse = await axios.get('https://ipinfo.io/json?token=9b0355627a5873'); // Replace with your IPInfo token
+    const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
+    const ipInfoToken = process.env.NEXT_PUBLIC_IPINFO_TOKEN;
+
+    if (!apiKey || !ipInfoToken) {
+      throw new Error('API key or IPInfo token is missing in environment variables');
+    }
+
+    const ipInfoResponse = await axios.get(`https://ipinfo.io/json?token=${ipInfoToken}`);
     const { city, country } = ipInfoResponse.data;
 
     const weatherResponse = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);

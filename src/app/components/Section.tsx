@@ -1,8 +1,14 @@
 'use client';
-
 import React from 'react';
 import styled from 'styled-components';
 
+// Define the interface for the component props
+interface SectionProps {
+  title: string; // Define title as a string
+  children: React.ReactNode; // Define children to accept any valid React node
+}
+
+// Styled components
 const SectionHeader = styled.h2`
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
@@ -33,7 +39,8 @@ const SectionParagraph = styled.p`
   }
 `;
 
-const Section = ({ title, children }) => (
+// Component definition using TypeScript props
+const Section: React.FC<SectionProps> = ({ title, children }) => (
   <div>
     <SectionHeader>{title}</SectionHeader>
     <SectionParagraph>{children}</SectionParagraph>

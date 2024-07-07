@@ -91,7 +91,7 @@ const CustomTable = () => {
   return (
     <TableContainer>
       <ImagePopupContainer>
-        <ImagePopup imageUrl="/images/pika.png" eyeUrl="/images/eyee.png" />
+        <ImagePopup imageUrl="/images/pika.png" />
       </ImagePopupContainer>
       <Title>Skills</Title>
       <Subtitle>With new tech comes new challenges; I welcome them.</Subtitle>

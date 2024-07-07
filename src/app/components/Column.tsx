@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 const ColumnContainer = styled.div`
@@ -27,7 +27,11 @@ const ColumnContainer = styled.div`
   }
 `;
 
-const Column = ({ children }) => (
+interface ColumnProps {
+  children: ReactNode;
+}
+
+const Column: React.FC<ColumnProps> = ({ children }) => (
   <ColumnContainer>
     {children}
   </ColumnContainer>
