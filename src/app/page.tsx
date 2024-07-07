@@ -1,7 +1,7 @@
-'use client';
+// src/app/page.tsx
 import React, { useEffect, useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { useWeatherAndTime } from './hooks/useWeatherAndTime';
+import { useWeatherAndTime } from '../hooks/useWeatherAndTime';
 import ProfileSection from './components/ProfileSection';
 import CenteredText from './components/CenteredText';
 import Section from './components/Section';
@@ -30,6 +30,17 @@ const Container = styled.div<{ isMobile: boolean }>`
 
   @media (min-width: 769px) {
     padding: 0 40px;
+  }
+`;
+
+const DividerHR = styled.div`
+  padding: 20px 0;
+  width: 100%;
+  display: block;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 10px 0;
   }
 `;
 
@@ -95,6 +106,9 @@ const Page: React.FC = () => {
       <Container isMobile={isMobile}>
         <ProfileSection src="/images/profile.jpg" alt="Profile Picture" />
         <CenteredText timeMessage={timeMessage} weather={weather} userTime={userTime} location={location} emoji={emoji} />
+        <DividerHR>
+            <Divider className='divider' />
+          </DividerHR>
         <SideBySideContainer>
           <LeftAlignedColumn>
             <Section title="Who am I?">
