@@ -16,7 +16,7 @@ const Container = styled.div<{ isMobile: boolean }>`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: ${({ isMobile }) => (isMobile ? '70px 20px 0' : '0 20px')};
+  padding: ${({ isMobile }) => (isMobile ? '90px 20px 0' : '0 20px')};
   margin: 50px auto 0;
   width: min(100vw, 740px);
   text-align: center;
@@ -24,7 +24,7 @@ const Container = styled.div<{ isMobile: boolean }>`
 
 
   @media (max-width: 768px) {
-    padding: 70px 20px 0; /* Adjusted to add more space for the fixed header */
+    padding: 90px 20px 0; /* Adjusted to add more space for the fixed header */
     margin: 0 auto;
   }
 

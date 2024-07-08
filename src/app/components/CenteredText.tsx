@@ -50,7 +50,7 @@ const CenteredText: React.FC<CenteredTextProps> = ({ timeMessage, weather, userT
       and actually use my brain...
     </div>
     <div>
-      {timeMessage} {weather}
+      {timeMessage} {weather}.
     </div>
     <div>Your current time is: {userTime}. Based on this, I'd guess you're in {location} {emoji}</div>
   </TextContainer>

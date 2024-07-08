@@ -12,7 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html>
       <head>
-        <title>🪿</title>
+        <title>🪿 Cyrus </title>
       </head>
       <body>
         <StyledComponentsRegistry>
@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           {children}
         
-          <Cursor /> {/* Add the custom cursor component */}
+      {/* Add the custom cursor component */}
         </StyledComponentsRegistry>
       </body>
     </html>

@@ -52,7 +52,7 @@ const HoverLink: React.FC<{ children: React.ReactNode; href: string; gifSrc: str
         href={href} 
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        style={{ color: 'blue', textDecoration: 'underline' }}
+        style={{ color: '#41546d', textDecoration: 'underline' }}
       >
         {children}
       </Link>
