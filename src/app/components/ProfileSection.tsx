@@ -24,7 +24,7 @@ const StyledImg = styled.img`
 
 const StyledH1 = styled.h1`
   font-family: 'CircularStd-Bold', sans-serif;
-  font-size: 36px;
+  font-size: 40px;
   margin-bottom: 0.5em;
 
   @media (max-width: 768px) {
