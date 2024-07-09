@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useEffect, useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { useWeatherAndTime } from './hooks/useWeatherAndTime';
@@ -11,6 +12,7 @@ import LeftAlignedText from './components/LeftAlignedText';
 import ImageSection from './components/ImageSection';
 import CodeBlock from './components/CodeBlock';
 import Footer from './components/Footer';
+import SkeletonLoader from './components/SkeletonLoader';
 
 const Container = styled.div<{ isMobile: boolean }>`
   display: flex;
@@ -22,9 +24,8 @@ const Container = styled.div<{ isMobile: boolean }>`
   text-align: center;
   align-items: center;
 
-
   @media (max-width: 768px) {
-    padding: 90px 20px 0; /* Adjusted to add more space for the fixed header */
+    padding: 90px 20px 0;
     margin: 0 auto;
   }
 
@@ -51,6 +52,7 @@ const DividerHR = styled.div`
     padding: 10px 0;
   }
 `;
+
 const codeString = `
 package main
 
@@ -76,7 +78,7 @@ func main() {
 `;
 
 const Page: React.FC = () => {
-  const { weather, timeMessage, location, emoji } = useWeatherAndTime();
+  const { weather, timeMessage, location, emoji, isLoading, error } = useWeatherAndTime();
   const [userTime, setUserTime] = useState<string>(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
@@ -105,7 +107,13 @@ const Page: React.FC = () => {
       <main>
         <Container isMobile={isMobile}>
           <ProfileSection src="/images/profile.jpg" alt="Profile Picture" />
-          <CenteredText timeMessage={timeMessage} weather={weather} userTime={userTime} location={location} emoji={emoji} />
+          {isLoading ? (
+            <SkeletonLoader isLoading={isLoading} />
+          ) : error ? (
+            <div>Error: {error.message}</div>
+          ) : (
+            <CenteredText timeMessage={timeMessage} weather={weather} userTime={userTime} location={location} emoji={emoji} />
+          )}
           <DividerHR>
             <Divider className='divider' />
           </DividerHR>
