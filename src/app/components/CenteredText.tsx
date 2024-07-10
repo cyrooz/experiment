@@ -1,5 +1,4 @@
 'use client';
-'use client';
 
 import React from 'react';
 import styled from 'styled-components';
@@ -23,13 +22,10 @@ const TextContainer = styled.div`
 
 interface CenteredTextProps {
   timeMessage: string;
-  weather: string;
   userTime: string;
-  location: string;
-  emoji: string;
 }
 
-const CenteredText: React.FC<CenteredTextProps> = ({ timeMessage, weather, userTime, location, emoji }) => (
+const CenteredText: React.FC<CenteredTextProps> = ({ timeMessage, userTime }) => (
   <TextContainer>
     <div>
       Currently, I am what is known as{' '}
@@ -49,10 +45,8 @@ const CenteredText: React.FC<CenteredTextProps> = ({ timeMessage, weather, userT
       </HoverLink>{' '}
       and actually use my brain...
     </div>
-    <div>
-      {timeMessage} {weather}.
-    </div>
-    <div>Your current time is: {userTime}. Based on this, I'd guess you're in {location} {emoji}</div>
+    <div>{timeMessage}</div>
+    <div>Your current time is: {userTime}.</div>
   </TextContainer>
 );
 

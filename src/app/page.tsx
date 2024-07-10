@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { useWeatherAndTime } from './hooks/useWeatherAndTime';
 import ProfileSection from './components/ProfileSection';
 import CenteredText from './components/CenteredText';
 import Section from './components/Section';
@@ -12,7 +11,6 @@ import LeftAlignedText from './components/LeftAlignedText';
 import ImageSection from './components/ImageSection';
 import CodeBlock from './components/CodeBlock';
 import Footer from './components/Footer';
-import SkeletonLoader from './components/SkeletonLoader';
 
 const Container = styled.div<{ isMobile: boolean }>`
   display: flex;
@@ -77,18 +75,42 @@ func main() {
 }
 `;
 
+const getInitialTimes = () => {
+  const myTimeZone = 'America/Los_Angeles'; // Pacific Time Zone
+  const myTime = new Date().toLocaleString('en-US', { timeZone: myTimeZone });
+  const myTimeDate = new Date(myTime);
+
+  const userTime = new Date();
+  const timeDifference = (Number(myTimeDate) - Number(userTime)) / (1000 * 60 * 60); // Difference in hours
+  const aheadBehind = timeDifference > 0 ? 'ahead' : 'behind';
+  const absoluteHoursDiff = Math.abs(timeDifference);
+
+  const timeMessage = `It's ${myTimeDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} for me (${absoluteHoursDiff.toFixed(0)} hours ${aheadBehind} of you).`;
+  const userTimeStr = userTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+  return { timeMessage, userTimeStr };
+};
+
 const Page: React.FC = () => {
-  const { weather, timeMessage, location, emoji, isLoading, error } = useWeatherAndTime();
-  const [userTime, setUserTime] = useState<string>(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+  const { timeMessage: initialTimeMessage, userTimeStr: initialUserTime } = getInitialTimes();
+  const [timeMessage, setTimeMessage] = useState<string>(initialTimeMessage);
+  const [userTime, setUserTime] = useState<string>(initialUserTime);
+
+  useEffect(() => {
+    const updateTimes = () => {
+      const { timeMessage, userTimeStr } = getInitialTimes();
+      setTimeMessage(timeMessage);
+      setUserTime(userTimeStr);
+    };
+
+    const intervalId = setInterval(updateTimes, 60000); // Update every minute
+
+    return () => clearInterval(intervalId); // Cleanup on unmount
+  }, []);
+
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
-    const updateUserTime = () => {
-      setUserTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    };
-
-    const intervalId = setInterval(updateUserTime, 5000); // Polling every 5 seconds
-
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
@@ -96,24 +118,15 @@ const Page: React.FC = () => {
     window.addEventListener('resize', handleResize);
     handleResize(); // Set initial isMobile state
 
-    return () => {
-      clearInterval(intervalId); // Cleanup on unmount
-      window.removeEventListener('resize', handleResize);
-    };
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
     <ThemeProvider theme={{ mode: 'light' }}>
       <main>
         <Container isMobile={isMobile}>
-          <ProfileSection src="/images/profile.jpg" alt="Profile Picture" />
-          {isLoading ? (
-            <SkeletonLoader isLoading={isLoading} />
-          ) : error ? (
-            <div>Error: {error.message}</div>
-          ) : (
-            <CenteredText timeMessage={timeMessage} weather={weather} userTime={userTime} location={location} emoji={emoji} />
-          )}
+          <ProfileSection src="/images/profile.jpg" alt="Profile Picture" blurSrc={'/images/output.jpg'} />
+          <CenteredText timeMessage={timeMessage} userTime={userTime} />
           <DividerHR>
             <Divider className='divider' />
           </DividerHR>

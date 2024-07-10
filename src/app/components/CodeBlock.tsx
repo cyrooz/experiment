@@ -7,24 +7,41 @@ import styled from 'styled-components';
 
 const CodeWrapper = styled.div`
   background-color: #f0f0f0;
-  border: 1px solid #ddd; // Customize the background color here
-  padding: 0.5em; // Add padding for better readability
-  border-radius: 8px; // Add rounded corners
-  margin: 1em 0; // Add margin for spacing
-  font-size: 1rem; // Adjust font size
-  line-height: 1.5; // Adjust line height
-  width: 100%; // Make sure the wrapper takes full width
-  overflow-x: auto; // Handle horizontal overflow for long lines of code
+  border: 1px solid #ddd;
+  padding: 0.5em;
+  border-radius: 8px;
+  margin: 1em 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
 
   @media (max-width: 768px) {
-    font-size: 0.9rem; // Adjust font size for mobile
+    font-size: 0.9rem;
   }
+
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f0f0f0;
+  }
+
+  touch-action: pan-y pinch-zoom; /* Allow vertical scrolling and pinch zoom */
 `;
 
 const CustomSyntaxHighlighter = styled(SyntaxHighlighter)`
-  background-color: inherit !important;  // Inherit background color from wrapper
-  padding: 0;  // Remove default padding from the highlighter
-  width: 100%; // Make sure the highlighter takes full width
+  background-color: inherit !important;
+  padding: 0;
+  width: 100%;
 `;
 
 const CodeBlock: React.FC<{ language: string; value: string }> = ({ language, value }) => {
