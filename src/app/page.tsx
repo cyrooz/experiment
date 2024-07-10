@@ -17,8 +17,8 @@ const Container = styled.div<{ isMobile: boolean }>`
   flex-direction: column;
   box-sizing: border-box;
   padding: ${({ isMobile }) => (isMobile ? '90px 20px 0' : '0 20px')};
-  margin: 50px auto 0;
-  width: min(100vw, 740px);
+  margin: 50px auto;
+  max-width: 800px;
   text-align: center;
   align-items: center;
 
@@ -31,6 +31,7 @@ const Container = styled.div<{ isMobile: boolean }>`
     padding: 0 40px;
   }
 `;
+
 
 const Divider = styled.hr`
   border: 2px solid #333;
@@ -125,7 +126,7 @@ const Page: React.FC = () => {
     <ThemeProvider theme={{ mode: 'light' }}>
       <main>
         <Container isMobile={isMobile}>
-          <ProfileSection src="/images/profile.jpg" alt="Profile Picture" blurSrc={'/images/output.jpg'} />
+          <ProfileSection src="/images/profile.jpg" alt="Profile Picture" />
           <CenteredText timeMessage={timeMessage} userTime={userTime} />
           <DividerHR>
             <Divider className='divider' />
@@ -133,12 +134,12 @@ const Page: React.FC = () => {
           <SideBySideContainer>
             <LeftAlignedColumn>
               <Section title="Who am I?">
-                I'm 17 and have a cat whose nickname is Chat (meaning cat in French) 🥖🇫🇷. J'aime la musique française. I love technology, entrepreneurship, can play the piano, and am an amateur poet. I enjoy biking, running in the early morning (glutton for punishment?), photography, and nature. I'm also a bookworm and slightly a music aficionado 🎵.
+              I'm 17 and have a cat nicknamed Chat (French for cat) 🥖. J'aime la musique française. I love technology, entrepreneurship, play the piano, and write poetry. I enjoy biking, early morning runs, photography, and nature. I'm also a bookworm and a music aficionado.
               </Section>
             </LeftAlignedColumn>
             <RightAlignedColumn>
               <Section title="My story">
-                I started coding after meeting a kid in California when I was around 13. His father was a software engineer. I built Discord bots 🤖 and procrastinated learning to code that first week I met him. I have always been creative and realized how much I enjoy technology and was hooked. Coding allowed me to bring my ideas to life. I've been creating ever since 👨‍💻.
+              I started coding at 13 after meeting a kid in California whose father was a software engineer. I built Discord bots and initially procrastinated learning to code. Always creative, I quickly realized my passion for technology and was hooked. I've been creating ever since.
               </Section>
             </RightAlignedColumn>
           </SideBySideContainer>
@@ -146,7 +147,7 @@ const Page: React.FC = () => {
             <Divider className='divider' />
           </DividerHR>
           <SkillsTable />
-          <LeftAlignedText header="Catch you later, alligator 🐊" paragraphs={['Before you go, have some free and "valuable"', 'See what I did there? 😉 I\'m so funny.']} logoSrc="/images/Go.png" />
+          <LeftAlignedText header="Catch you later, alligator 🐊" paragraphs={['Before you go, have some free and "valuable" code.', 'See what I did there? 😉 I\'m so funny.']} logoSrc="/images/Go.png" />
           <CodeBlock language="go" value={codeString} />
           <ImageSection src="/images/jenna-ortega.jpg" alt="Jenna Ortega" title="Why are you still here?" description="No, Seriously." />
         </Container>

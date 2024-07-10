@@ -12,6 +12,12 @@
   --background-end-rgb: 255, 255, 255;
 
 }
+@font-face {
+  font-family: 'CircularStd-Book';
+  src: url('/fonts/CircularStd-Book.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 * {
   box-sizing: border-box;

@@ -6,7 +6,7 @@ import { coy } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import styled from 'styled-components';
 
 const CodeWrapper = styled.div`
-  background-color: #f0f0f0;
+  background-color: #f9f9f9;
   border: 1px solid #ddd;
   padding: 0.5em;
   border-radius: 8px;
@@ -15,7 +15,7 @@ const CodeWrapper = styled.div`
   line-height: 1.5;
   width: 100%;
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
   @media (max-width: 768px) {
@@ -35,7 +35,7 @@ const CodeWrapper = styled.div`
     background: #f0f0f0;
   }
 
-  touch-action: pan-y pinch-zoom; /* Allow vertical scrolling and pinch zoom */
+  touch-action: auto; /* Allow vertical scrolling and pinch zoom */
 `;
 
 const CustomSyntaxHighlighter = styled(SyntaxHighlighter)`

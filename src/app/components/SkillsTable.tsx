@@ -66,9 +66,11 @@ const TableHeaderCell = styled.div`
   font-weight: bold;
 `;
 
-const TableCell = styled.div`
+const TableCell = styled.div<{ isCategory?: boolean }>`
+font-family: 'CircularStd-Book', sans-serif;
   flex: 1;
   text-align: left;
+  ${(props) => props.isCategory && 'font-weight: bold;'}
 `;
 
 const ImagePopupContainer = styled.div`
@@ -84,7 +86,7 @@ const skillsData = [
   { category: '⚙️ Backend', technologies: 'Rust, Go, Java, Python, C++, C, Node.js, Express.js, Gin, Actix-web' },
   { category: '🔧 Tools', technologies: 'GCP, AWS, Git/GitHub, Heroku, Vercel, Figma, GitHub Actions, Docker, Bash, Common ML libraries' },
   { category: '🗂️ Databases', technologies: 'MongoDB, Cassandra, Firebase RTD & Firestore, Postgres, Gorm, Mongoose, Redis, SQL-based DBs, iOS/Android/web local storage' },
-  { category: '✨ Personal', technologies: 'Determined, communicative, honest, reliable' },
+  { category: '👨‍💻 Personal', technologies: 'Determined, communicative, honest, reliable' },
 ];
 
 const CustomTable = () => {
@@ -102,7 +104,7 @@ const CustomTable = () => {
         </TableHeaderRow>
         {skillsData.map((skill, index) => (
           <TableRow key={index}>
-            <TableCell>{skill.category}</TableCell>
+            <TableCell isCategory>{skill.category}</TableCell>
             <TableCell>{skill.technologies}</TableCell>
           </TableRow>
         ))}

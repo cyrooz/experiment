@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import Image from 'next/image';
 
 const wave = keyframes`
   0% { transform: rotate(0deg); }
@@ -13,16 +12,13 @@ const wave = keyframes`
   100% { transform: rotate(0deg); }
 `;
 
-const StyledImgWrapper = styled.div`
+const StyledImg = styled.img`
   border-radius: 50%;
-  overflow: hidden;
   width: 202px;
-  height: 202px;
   margin-bottom: 1em;
 
   @media (max-width: 768px) {
     width: 150px;
-    height: 150px;
   }
 `;
 
@@ -48,19 +44,10 @@ const Emoji = styled.span`
   transform-origin: 70% 70%;
 `;
 
-const ProfileSection = ({ src, alt, blurSrc }: { src: string; alt: string; blurSrc: string }) => (
+
+const ProfileSection = ({ src, alt }: { src: string, alt: string }) => (
   <>
-    <StyledImgWrapper>
-      <Image
-        src={src}
-        alt={alt}
-        layout="responsive"
-        width={202}
-        height={202}
-        placeholder="blur"
-        blurDataURL={blurSrc}
-      />
-    </StyledImgWrapper>
+    <StyledImg src={src} alt={alt} />
     <StyledH1>
       <Emoji>👋</Emoji> Hey, I'm <Highlight>Cyrus</Highlight>
     </StyledH1>
