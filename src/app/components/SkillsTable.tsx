@@ -70,7 +70,7 @@ const TableCell = styled.div<{ isCategory?: boolean }>`
 font-family: 'CircularStd-Book', sans-serif;
   flex: 1;
   text-align: left;
-  ${(props) => props.isCategory && 'font-weight: bold;'}
+  font-family: ${(props) => (props.isCategory ? 'CircularStd-Bold' : 'CircularStd-Book')}, sans-serif;
 `;
 
 const ImagePopupContainer = styled.div`
